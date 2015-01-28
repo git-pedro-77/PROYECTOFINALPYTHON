@@ -7,6 +7,7 @@ Created on 19/1/2015
 
 from ec.edu.itsae.dao import usuarioDao
 from ec.edu.itsae.dao import ClienteDao
+from ec.edu.itsae.dao import productoDao
 
 '''vamos a crear un objeto de persona dao'''
 
@@ -16,6 +17,5 @@ print obj.reportarCliente()
 obju=usuarioDao.UsuarioDao()
 print obju.reportarusuario()
 
-
-#objt=usuarioDao.TrabajadorDao()
-#print objt.reportarTrabajador()
+objp=productoDao.productoDao()
+print objp.reportarproducto()

@@ -53,7 +53,7 @@ class UsuarioDao(DBcon.DBcon):#heredando
         reporte=con.fetchall()
         columna=('value', 'id')
         lista=[]
-        print con.execute
+        #print con.execute
         for row in reporte:
             lista.append(dict(zip(columna,row))) #dict = diccionario, zip = para unir las las dos columnas
         return json.dumps(lista, indent=2) 
@@ -61,7 +61,7 @@ class UsuarioDao(DBcon.DBcon):#heredando
     def buscarusuarioDato(self, datobuscado):
         con=self.conexion().connect().cursor() 
         sql=""" select * from user where upper(CONCAT (nombre)) like upper('%s') """ %("%"+datobuscado+"%")
-        print sql
+        #print sql
         con.execute(sql)
         reporte=con.fetchall() 
         return reporte 
