@@ -17,12 +17,12 @@ def mainProducto():
 
 @app.route("/addproducto", methods=['POST'])
 def addProducto():
-    codigo_producto=request.form.get('Cedula', type=str)
+    codigo_producto=request.form.get('codproducto', type=str)
     nombre_producto=request.form.get('nombre', type=str)
-    precio_producto=request.form.get('apellido', type=str)
-    proveedor=request.form.get('celular', type=str)
-    fecha_crea=request.form.get('direccion', type=str)
-    fecha_venc=request.form.get('correo', type=str)
+    precio_producto=request.form.get('precio', type=str)
+    proveedor=request.form.get('proveedor', type=str)
+    fecha_crea=request.form.get('fechaelab', type=str)
+    fecha_venc=request.form.get('fechaven', type=str)
     
     productoDao.ProductoDao().insertarproducto(codigo_producto, nombre_producto, precio_producto, proveedor, fecha_crea, fecha_venc)
     return redirect(url_for('mainproducto'))
