@@ -10,21 +10,21 @@ from flask import render_template, request, redirect, url_for
 
 
 @app.route("/mainproducto")# para entar a la pagina por main persona al metodo
-def mainProducto():
+def mainproducto():
     objp=productoDao.ProductoDao().reportarproducto()#llamar al reporte
     return render_template("producto.html", databdprod=objp)#enviando al archivo html y ahi organizarlo
 
 
 @app.route("/addproducto", methods=['POST'])
 def addProducto():
-    codigo_producto=request.form.get('Cedula', type=str)
-    nombre_producto=request.form.get('nombre', type=str)
-    precio_producto=request.form.get('apellido', type=str)
-    proveedor=request.form.get('celular', type=str)
-    fecha_crea=request.form.get('direccion', type=str)
-    fecha_venc=request.form.get('correo', type=str)
+    codigo=request.form.get('codproducto', type=str)
+    nombre=request.form.get('nombre', type=str)
+    precio=request.form.get('precio', type=str)
+    proveedor=request.form.get('proveedor', type=str)
+    fechacrea=request.form.get('fechaelab', type=str)
+    fechavenc=request.form.get('fechaven', type=str)
     
-    productoDao.ProductoDao().insertarproducto(codigo_producto, nombre_producto, precio_producto, proveedor, fecha_crea, fecha_venc)
+    productoDao.ProductoDao().insertarproducto(codigo, nombre, precio, proveedor, fechacrea, fechavenc)
     return redirect(url_for('mainproducto'))
 
 @app.route("/buscarautop")# para entar a la pagina por main persona al metodo

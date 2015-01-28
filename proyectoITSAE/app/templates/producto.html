@@ -37,9 +37,6 @@ $(function(){
 		$('#btncrear').show(); <!-- para ocultar el boton-->
 	});
 	
-	$('#btneliminar').click(function(){<!--  -->
-		$('#PanelInsertartProducto').show();<!--   -->
-	});
 	
 	$('#fechaelab').datepicker({
 		      format:"yyyy-mm-dd"
@@ -49,22 +46,17 @@ $(function(){
     });
 	
 	$('#formT').validity(function(){
+		$('#codproducto')
+		 .require();
+		
 		$('#nombre')
 		 .require();
 		
-		$('#apaterno')
+		$('#precio')
 		 .require();
 		
-		$('#amaterno')
-		 .require();
-		
-		$('#Cedula')
+		$('#proveedor')
 		.require()
-		.match("number");
-		
-		 $('#celular')
-		 .require()
-		 .match("number");
 		
 		});
 	
@@ -149,13 +141,13 @@ $(function(){
 	<br>
 
 	<div id="divformS" align="center">
-	<form action="/buscardatoT" id="formb" class="form-inline" role="formb">
+	<form action="/buscardatop" id="formb" class="form-inline" role="formb">
 		<div class="form-group">
 			<label for="bnombre" class="col-sm-2 control-label">Buscar Producto:</label>   <!-- class propio del bootstrap -->
 			<div class="col-sm-10">                                                      <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
 				<input type="text" id="bnombre" name="bnombre" class="form-control">
 				<input type="submit"  name="btnbuscar"  class="btn btn-primary" value="Buscar" id="btnbuscar"> 
-				 <a type="button" id="btncrear" class="btn btn-success" value="Crear" id="btnagregar"  class="btn btn-principal">Ingresar Usuario <img src="static/img/btnAdd.png"> </a>     <!-- class es par ael estilo -->
+				 <a type="button" id="btncrear" class="btn btn-success" value="Crear" id="btnagregar"  class="btn btn-principal">Ingresar Producto <img src="static/img/btnAdd.png"> </a>     <!-- class es par ael estilo -->
 			</div> 
 		</div>
 	</form>
@@ -174,7 +166,7 @@ $(function(){
 			<th>Fecha de Vencimiento</th>
 			<th>Editar</th>
 			<th>Eliminar</th>
-			<th>Estado Ingreso</th>
+		<<!-- <th>Estado Ingreso</th>  -->
 		</tr>
 		</thead>	
 		<tbody>	
@@ -187,13 +179,14 @@ $(function(){
 			<td>{{d[5]}}</td>
 			<td>{{d[6]}}</td>
 			<td>
-			<a id="btnmodificar" class="btn btn-info" href="/editardato?idpersona={{d[0]}}"> <img src="static/img/modificar.png" > </a>
+			<a id="btnmodificar" class="btn btn-info" href="/editardato?id_producto={{d[0]}}"> <img src="static/img/modificar.png" > </a>
 			</td>
 			<td>
-			<a id="btneliminar"  class="btn btn-danger" href="/eliminardato?id_producto={{d[0]}}"> <img src="static/img/eliminar.png"> </a>
+			<a id="btneliminar"  class="btn btn-danger" href="/eliminardatop?id_producto={{d[0]}}"> <img src="static/img/eliminar.png"> </a>
 			</td>
 			<td>
-			<a id="btnagregar"  class="btn btn-principal" onmouseDown="alert('ESTE USUARIO YA ESTA INGRESADO')"> <img src="static/img/celphone.png"> </a>
+			
+			<!-- <a id="btnagregar"  class="btn btn-principal" onmouseDown="alert('ESTE USUARIO YA ESTA INGRESADO')"> <img src="static/img/celphone.png"> </a> -->
 			
 			</td>
 		</tr>

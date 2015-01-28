@@ -28,12 +28,12 @@ class ProductoDao(DBcon.DBcon):#heredando
         reporte=con.fetchall()
         return reporte #despues del return no se debe colocar nada
 
-    def insertarproducto(self, codigo_producto, nombre_producto, precio_producto, proveedor,fecha_crea,fecha_venc):
+    def insertarproducto(self, codigo, nombre, precio, proveedor,fechacrea,fechavenc):
         con=self.conexion().connect()
-        sql= """insert into producto(codigo_producto,nombre_producto,precio_producto,proveedor,fecha_crea,fecha_venc)
+        sql= """insert into producto(codigo_producto, nombre_producto, precio_producto, proveedor, fecha_crea, fecha_venc)
                              values ('%s', '%s', '%s','%s', '%s', '%s')
-                             """ %(codigo_producto,nombre_producto,precio_producto,proveedor,fecha_crea,fecha_venc) 
-        # print sql   Para imprimir nuestra consulta para poder ver        
+                             """ %(codigo,nombre,precio,proveedor,fechacrea,fechavenc) 
+        print #sql   Para imprimir nuestra consulta para poder ver        
         with con:
             cursor=con.cursor()
             cursor.execute(sql)#aqui debe estar sql para que se ejecute el insert
