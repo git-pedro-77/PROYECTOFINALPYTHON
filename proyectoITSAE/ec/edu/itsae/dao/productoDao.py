@@ -28,11 +28,11 @@ class productoDao(DBcon.DBcon):#heredando
         reporte=con.fetchall()
         return reporte #despues del return no se debe colocar nada
 
-    def insertarproducto(self, nombre, contrasena, rep_contrasena, estado):
+    def insertarproducto(self, codigo_producto, nombre_producto, precio_producto, proveedor,fecha_crea,fecha_venc):
         con=self.conexion().connect()
-        sql= """insert into producto(nombre, contrase�a, rep_contrase�a, estado)
-                             values ('%s', '%s', '%s', %i)
-                             """ %(nombre, contrasena, rep_contrasena, estado) 
+        sql= """insert into producto(codigo_producto,nombre_producto,precio_producto,proveedor,fecha_crea,fecha_venc)
+                             values ('%s', '%s', '%s','%s', '%s', '%s')
+                             """ %(codigo_producto,nombre_producto,precio_producto,proveedor,fecha_crea,fecha_venc) 
         # print sql   Para imprimir nuestra consulta para poder ver        
         with con:
             cursor=con.cursor()
@@ -41,7 +41,7 @@ class productoDao(DBcon.DBcon):#heredando
         #deber actualizar y eliminar
     def eliminarproducto(self,datoelim):
         con=self.conexion().connect()
-        sql= """ delete from producto where id_user= %i """ %int(datoelim)
+        sql= """ delete from producto where id_producto= %i """ %int(datoelim)
         #print sql    Para imprimir nuestra consulta para poder ver        
         with con:
             cursor=con.cursor()
@@ -49,7 +49,7 @@ class productoDao(DBcon.DBcon):#heredando
     
     def buscarproductoNombre(self, datobusca):
         con=self.conexion().connect().cursor()  #capturando de la clase DBcon
-        con.execute(""" select CONCAT (nombre) as value, id_user as id from producto where upper(CONCAT (nombre)) like upper('%s') """ %("%"+datobusca+"%") )
+        con.execute(""" select CONCAT (nombre) as value, id_producto as id from producto where upper(CONCAT (nombre)) like upper('%s') """ %("%"+datobusca+"%") )
         reporte=con.fetchall()
         columna=('value', 'id')
         lista=[]
