@@ -10,7 +10,7 @@ from flask import render_template, request, redirect, url_for
 
 
 @app.route("/mainproducto")# para entar a la pagina por main persona al metodo
-def mainProducto():
+def mainproducto():
     objp=productoDao.ProductoDao().reportarproducto()#llamar al reporte
     return render_template("producto.html", databdprod=objp)#enviando al archivo html y ahi organizarlo
 
