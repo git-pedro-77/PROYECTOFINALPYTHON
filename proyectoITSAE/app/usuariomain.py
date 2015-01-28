@@ -18,7 +18,7 @@ def mainusuario():
 def addUsuario():
     nombre=request.form.get('usuario', type=str)
     contrasena=request.form.get('clave', type=str)
-    rep_contrasena=request.form.get('repclave', type=int)
+    rep_contrasena=request.form.get('repclave', type=str)
     estado=request.form.get('estado', type=int)
     
     usuarioDao.UsuarioDao().insertarusuario(nombre, contrasena, rep_contrasena, estado)
