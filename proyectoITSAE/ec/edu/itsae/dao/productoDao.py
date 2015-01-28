@@ -30,7 +30,7 @@ class ProductoDao(DBcon.DBcon):#heredando
 
     def insertarproducto(self, codigo_producto, nombre_producto, precio_producto, proveedor,fecha_crea,fecha_venc):
         con=self.conexion().connect()
-        sql= """insert into producto(codigo_producto,nombre_producto,precio_producto,proveedor,fecha_crea,fecha_venc)
+        sql= """insert into producto(codigo_producto, nombre_producto, precio_producto, proveedor, fecha_crea, fecha_venc)
                              values ('%s', '%s', '%s','%s', '%s', '%s')
                              """ %(codigo_producto,nombre_producto,precio_producto,proveedor,fecha_crea,fecha_venc) 
         print #sql   Para imprimir nuestra consulta para poder ver        
