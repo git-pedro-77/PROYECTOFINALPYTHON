@@ -1,10 +1,92 @@
-<!DOCTYPE html>
-<html>
+{% extends 'main.html' %}
+{% block contenido %}
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producto</title>
 
+<!-- Llamando a los estilos y librerias -->
+<link href="static/css/jquery.dataTables.min.css" rel="stylesheet"><!-- Estilo de la tabla -->
+<script src="static/js/jquery.dataTables.min.js"></script> <!-- Para la paginacion -->
+<script src="static/js/bootstrapPager.min.js"></script><!-- para paginacion -->
+
+<!-- auto busqueda -->
+<link href="static/css/jquery-ui.min.css" rel="stylesheet">
+<script src="static/js/jquery-ui.min.js"></script> 
+
+<!--Para Validar los campos -->
+<link href="static/css/jquery.validity.css" rel="stylesheet">
+<script src="static/js/jquery.validity.js"></script>
+
+
+<script type="text/javascript">
+<!--el ja query se debe colcoar siempre $ y numerar para llamar al id -->
+$(function(){
+	$('#btncrear').click(function(){<!--  -->
+		$('#PanelInsertartProducto').show(); <!--  -->
+		$('#btncrear').hide(); <!-- para ocultar el boton-->
+	}); 
+	
+	$('#btncancelar').click(function(){<!--  -->
+		$('#PanelInsertartProducto').hide();<!--  -->
+		$('#btncrear').show(); <!-- para ocultar el boton-->
+	});
+	
+	$('#btneliminar').click(function(){<!--  -->
+		$('#PanelInsertartProducto').show();<!--   -->
+	});
+	
+	$('#fechaelab').datepicker({
+		      format:"yyyy-mm-dd"
+	});
+	$('#fechaven').datepicker({
+	      format:"yyyy-mm-dd"
+    });
+	
+	$('#formT').validity(function(){
+		$('#nombre')
+		 .require();
+		
+		$('#apaterno')
+		 .require();
+		
+		$('#amaterno')
+		 .require();
+		
+		$('#Cedula')
+		.require()
+		.match("number");
+		
+		 $('#celular')
+		 .require()
+		 .match("number");
+		
+		});
+	
+	$('#PanelInsertartProducto').validity("input:text, textarea:textarea, select");
+	
+});
+</script>
+</head>
+
+
+<body>
+ <div id="PanelInsertartProducto" style="display: none;"> <!-- no va a mostrar el panel esta oculto -->
+		<div class="panel panel-primary"><!-- todo class es tomado desde el bootstrap -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Formulario  Ventas</h3> <!--Nombre del registro -->
+
+			</div>
+			<div class="panel-body">
+			<div id="formAdd" aling="center">
+			<form action="/addproducto" method="post" id="formT" name="formT" 
+			class="form-horizontal" role="form"> <!--estilos-->
+			
+			<div class="form-group">
+			<label for="codproducto" class="col-sm-2 control-label">Codigo Producto:</label> <!-- class propio del bootstrap -->
+			<div class="col-sm-10"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+			<input type="text" id="codproducto" name="codproducto" class="form-control" required="" placeholder="Campo de texto codproducto">
+			</div> 
+			</div>
 </body>
 </html>
