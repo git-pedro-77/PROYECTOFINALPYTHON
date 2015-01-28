@@ -9,8 +9,6 @@ from ec.edu.itsae.dao import ClienteDao
 from flask import render_template, request, redirect, url_for
 
 
-
-
 @app.route("/maincliente")# para entar a la pagina por main persona al metodo
 def maincliente():
     objR=ClienteDao.ClienteDao().reportarCliente()#llamar al reporte
