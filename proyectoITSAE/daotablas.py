@@ -14,7 +14,7 @@ obj=ClienteDao.ClienteDao()
 print obj.reportarCliente()
 
 objt=usuarioDao.UsuarioDao()
-print objt.reportarTrabajador()
+print objt.reportarusuario()
 
 
 #objt=usuarioDao.TrabajadorDao()
