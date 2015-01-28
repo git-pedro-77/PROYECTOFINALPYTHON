@@ -22,34 +22,34 @@ class TrabajadorDao(DBcon.DBcon):#heredando
         pass#sirve cuando no hay implementacion en el metodo
     
     
-    def reportarTrabajador(self):
+    def reportarusuario(self):
         con=self.conexion().connect().cursor()  #capturando de la clase DBcon
-        con.execute(" select * from trabajador ")
+        con.execute(" select * from user ")
         reporte=con.fetchall()
         return reporte #despues del return no se debe colocar nada
 
-    def insertarTrabajador(self, usuario, clave, estado, fecha_acceso, idTipoTrabajador):
+    def insertarusuario(self, nombre, contrasena, rep_contrasena, estado):
         con=self.conexion().connect()
-        sql= """insert into trabajador(usuario, clave, estado, fecha_acceso, idTipoTrabajador)
-                             values ('%s', '%s', %i, '%s', %i)
-                             """ %(usuario, clave, estado, fecha_acceso, idTipoTrabajador) 
-        print sql   # Para imprimir nuestra consulta para poder ver        
+        sql= """insert into user(nombre, contraseña, rep_contraseña, estado)
+                             values ('%s', '%s', '%s', %i)
+                             """ %(nombre, contrasena, rep_contrasena, estado) 
+        # print sql   Para imprimir nuestra consulta para poder ver        
         with con:
             cursor=con.cursor()
             cursor.execute(sql)#aqui debe estar sql para que se ejecute el insert
     
         #deber actualizar y eliminar
-    def eliminarTrabajador(self,datoelim):
+    def eliminarusuario(self,datoelim):
         con=self.conexion().connect()
-        sql= """ delete from trabajador where idpersona= %i """ %int(datoelim)
+        sql= """ delete from user where id_user= %i """ %int(datoelim)
         #print sql    Para imprimir nuestra consulta para poder ver        
         with con:
             cursor=con.cursor()
             cursor.execute(sql)#aqui debe estar sql para que se ejecute el insert
     
-    def buscarTrabajadorNombre(self, datobusca):
+    def buscarusuarioNombre(self, datobusca):
         con=self.conexion().connect().cursor()  #capturando de la clase DBcon
-        con.execute(""" select CONCAT (usuario) as value, idpersona as id from trabajador where upper(CONCAT (usuario)) like upper('%s') """ %("%"+datobusca+"%") )
+        con.execute(""" select CONCAT (nombre) as value, id_user as id from user where upper(CONCAT (nombre)) like upper('%s') """ %("%"+datobusca+"%") )
         reporte=con.fetchall()
         columna=('value', 'id')
         lista=[]
@@ -58,9 +58,9 @@ class TrabajadorDao(DBcon.DBcon):#heredando
             lista.append(dict(zip(columna,row))) #dict = diccionario, zip = para unir las las dos columnas
         return json.dumps(lista, indent=2) 
     
-    def buscarTrabajadorDato(self, datobuscado):
+    def buscarusuarioDato(self, datobuscado):
         con=self.conexion().connect().cursor() 
-        sql=""" select * from trabajador where upper(CONCAT (usuario)) like upper('%s') """ %("%"+datobuscado+"%")
+        sql=""" select * from user where upper(CONCAT (nombre)) like upper('%s') """ %("%"+datobuscado+"%")
         print sql
         con.execute(sql)
         reporte=con.fetchall() 

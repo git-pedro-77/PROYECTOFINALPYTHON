@@ -5,16 +5,16 @@ Created on 27/1/2015
 @author: Programacion
 '''
 from app import app
-from ec.edu.itsae.dao import trabajadorDao
+from ec.edu.itsae.dao import usuarioDao
 from flask import render_template, request, redirect, url_for
 
 
-@app.route("/maintrabajador")# para entar a la pagina por main
+@app.route("/mainusuario")# para entar a la pagina por main
 def maintrabajador():
-    objt=trabajadorDao.TrabajadorDao().reportarTrabajador()#llamar al reporte
-    return render_template("trabajador.html", data=objt)#enviando al archivo html y ahi organizarlo
+    objt=usuarioDao.usuarioDao().reportarusuario()()#llamar al reporte
+    return render_template("usuario.html", data=objt)#enviando al archivo html y ahi organizarlo
 
-@app.route("/addTrabajador", methods=['POST'])
+@app.route("/addusuario", methods=['POST'])
 def addTrabajador():
     usuario=request.form.get('usuario', type=str)
     clave=request.form.get('clave', type=str)
@@ -22,27 +22,27 @@ def addTrabajador():
     fecha_acceso=request.form.get('fecha_Ingreso', type=str)
     idTipoTrabajador=request.form.get('tipoid', type=int)
     
-    trabajadorDao.TrabajadorDao().insertarTrabajador(usuario, clave, estado, fecha_acceso, idTipoTrabajador)
+    usuarioDao.usuarioDao().insertarusuario()
     return redirect(url_for('maintrabajador'))
 
-@app.route("/buscarautopt")# para entar a la pagina por main persona al metodo
+@app.route("/buscarautopu")# para entar a la pagina por main persona al metodo
 def buscarTrabajadorAuto():
     nombre=str(request.args.get('term'))
-    objt=trabajadorDao.TrabajadorDao().buscarTrabajadorNombre(nombre)#llamar al reporte
+    objt=usuarioDao.usuarioDao().buscarTrabajadorNombre(nombre)#llamar al reporte
     # print objR  #solo es para provar las impresiones
     return objt #enviando al archivo html y ahi organizarlo
 
-@app.route("/eliminardatoT")# para entar a la pagina por main persona al metodo
+@app.route("/eliminardatou")# para entar a la pagina por main persona al metodo
 def eliminarTrabajadorDato():
     datoeli=request.args.get('idpersona')
-    trabajadorDao.TrabajadorDao().eliminarTrabajador(datoeli)
+    usuarioDao.usuarioDao().eliminarTrabajador(datoeli)
     return redirect(url_for('maintrabajador'))
 
 
-@app.route("/buscardatoT")# para entar a la pagina por main persona al metodo
+@app.route("/buscardatou")# para entar a la pagina por main persona al metodo
 def buscarTrabajadorDato():
     nombre=str(request.args.get('bnombre'))
-    objt=trabajadorDao.TrabajadorDao().buscarTrabajadorDato(nombre)
+    objt=usuarioDao.usuarioDao().buscarTrabajadorDato(nombre)
     return render_template("trabajador.html", data=objt)
 
 
