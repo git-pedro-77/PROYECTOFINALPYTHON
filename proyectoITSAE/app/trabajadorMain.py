@@ -11,7 +11,7 @@ from flask import render_template, request, redirect, url_for
 
 @app.route("/mainusuario")# para entar a la pagina por main
 def maintrabajador():
-    objt=usuarioDao.usuarioDao().reportarusuario()()#llamar al reporte
+    objt=usuarioDao.usuarioDao().reportarusuario()#llamar al reporte
     return render_template("usuario.html", data=objt)#enviando al archivo html y ahi organizarlo
 
 @app.route("/addusuario", methods=['POST'])
@@ -22,7 +22,7 @@ def addTrabajador():
     fecha_acceso=request.form.get('fecha_Ingreso', type=str)
     idTipoTrabajador=request.form.get('tipoid', type=int)
     
-    usuarioDao.usuarioDao().insertarusuario()
+    usuarioDao.usuarioDao().insertarusuario(nombre, contrasena, rep_contrasena, estado)
     return redirect(url_for('maintrabajador'))
 
 @app.route("/buscarautopu")# para entar a la pagina por main persona al metodo
