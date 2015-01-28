@@ -76,12 +76,12 @@ $(function(){
 	<div id="PanelInsertartTrabajador" style="display: none;"> <!-- no va a mostrar el panel esta oculto -->
 		<div class="panel panel-primary"><!-- todo class es tomado desde el bootstrap -->
 			<div class="panel-heading">
-				<h3 class="panel-title">Formulario de Registro de Usuarios</h3> <!--Nombre del registro -->
+				<h3 class="panel-title">Formulario de Registro de Productos</h3> <!--Nombre del registro -->
 
 			</div>
 			<div class="panel-body">
 			<div id="formAdd" aling="center">
-			<form action="/addusuario" method="post" id="formT" name="formT" 
+			<form action="/addTrabajador" method="post" id="formT" name="formT" 
 			class="form-horizontal" role="form"> <!--estilos-->
 			
 			<div class="form-group">
@@ -99,18 +99,29 @@ $(function(){
 			</div>
 			
 			<div class="form-group">
-			<label for="repclave" class="col-sm-2 control-label">Repetir Clave:</label> <!-- class propio del bootstrap -->
-			<div class="col-sm-10"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
-			<input type="text" id="repclave" name="repclave" class="form-control" required="">
-			</div> 
-			</div>
-			
-			<div class="form-group">
 			<label  for="estado" class="col-sm-2 control-label">Estado:</label> <!-- class propio del bootstrap -->
 			<div class="col-sm-10"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
 				<select name="estado" class="form-control">
 					<option  value="1">Activo</option>
 					<option value="0">Inactivo</option>
+				</select>
+			</div> 
+			</div>
+			
+			<div class="form-group">
+			<label for="fecha_nacimiento" class="col-sm-2 control-label">Fecha Ingreso:</label> <!-- class propio del bootstrap -->
+			<div class="col-sm-10"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+			<input type="text" id="fecha_Ingreso" name="fecha_Ingreso" class="form-control">
+			</div> 
+			</div>
+			
+			<div class="form-group">
+			<label  for="estado" class="col-sm-2 control-label">Id Trabajador:</label> <!-- class propio del bootstrap -->
+			<div class="col-sm-10"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+				<select name="tipoid" class="form-control">
+					<option  value="1">Administrador</option>
+					<option value="2">Docente</option>
+					<option value="3">Estudiante</option>
 				</select>
 			</div> 
 			</div>
@@ -136,7 +147,7 @@ $(function(){
 	<div id="divformS" align="center">
 	<form action="/buscardatoT" id="formb" class="form-inline" role="formb">
 		<div class="form-group">
-			<label for="bnombre" class="col-sm-2 control-label">Buscar Usuario:</label>   <!-- class propio del bootstrap -->
+			<label for="bnombre" class="col-sm-2 control-label">Buscar Trabajador:</label>   <!-- class propio del bootstrap -->
 			<div class="col-sm-10">                                                      <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
 				<input type="text" id="bnombre" name="bnombre" class="form-control">
 				<input type="submit"  name="btnbuscar"  class="btn btn-primary" value="Buscar" id="btnbuscar"> 
@@ -147,14 +158,15 @@ $(function(){
 	</div>
 	
 	
-	<div class="table-responsive" id="divtableusuario">	
-	<table class="table" id="tableusuario">                                         <!-- para poder lalmar luego con el id -->
+	<div class="table-responsive" id="divtableitsaeT">	
+	<table class="table" id="tableItsaeT">                                         <!-- para poder lalmar luego con el id -->
 		<thead> 
 		<tr>
-			<th>Nombre</th>
-			<th>Contraseña</th>
-			<th>Rep_Contraseña</th>
+			<th>Usuario</th>
+			<th>Clave</th>
 			<th>Estado</th>
+			<th>Fecha de Acceso</th>
+			<th>Tipo Trabajador</th>
 			<th>Editar</th>
 			<th>Eliminar</th>
 			<th>Estado Ingreso</th>
@@ -167,11 +179,12 @@ $(function(){
 			<td>{{d[2]}}</td>
 			<td>{{d[3]}}</td>
 			<td>{{d[4]}}</td>
+			<td>{{d[5]}}</td>
 			<td>
-			<a id="btnmodificar" class="btn btn-info" href="/editardatou?idpersona={{d[0]}}"> <img src="static/img/modificar.png" > </a>
+			<a id="btnmodificar" class="btn btn-info" href="/editardato?idpersona={{d[0]}}"> <img src="static/img/modificar.png" > </a>
 			</td>
 			<td>
-			<a id="btneliminar"  class="btn btn-danger" href="/eliminardatou?id_user={{d[0]}}"> <img src="static/img/eliminar.png"> </a>
+			<a id="btneliminar"  class="btn btn-danger" href="/eliminardato?idpersona={{d[0]}}"> <img src="static/img/eliminar.png"> </a>
 			</td>
 			<td>
 			<a id="btnagregar"  class="btn btn-principal" onmouseDown="alert('ESTE USUARIO YA ESTA INGRESADO')"> <img src="static/img/celphone.png"> </a>
@@ -185,7 +198,7 @@ $(function(){
 	
 	
 <script type="text/javascript">
-	$('#tableusuario').DataTable({ <!--es para llamar a id de la tabla-->
+	$('#tableItsaeT').DataTable({ <!--es para llamar a id de la tabla-->
 		paginType:"bootstrapPager", 
 		pagerSettings:{ searchOnEnter:true, <!--para buscar-->
 			language: "Pagina ~ of paginas" 
@@ -196,7 +209,7 @@ $(function(){
 
 <script type="text/javascript">
 	$('#bnombre').autocomplete({ <!--es para llamar a id de la tabla-->
-		source:"/buscarautopu", <!--Para enviar la url y llamar al url-->
+		source:"/buscarautopt", <!--Para enviar la url y llamar al url-->
 		minLength:2
 	});
 
@@ -212,5 +225,6 @@ $(function(){
 
 
 {% endblock %}
+
 
 

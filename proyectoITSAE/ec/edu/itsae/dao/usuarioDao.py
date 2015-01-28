@@ -9,7 +9,7 @@ from ec.edu.itsae.conn import DBcon
 import json 
 
 
-class TrabajadorDao(DBcon.DBcon):#heredando
+class UsuarioDao(DBcon.DBcon):#heredando
     '''
     classdocs
     '''
