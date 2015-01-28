@@ -51,11 +51,11 @@ def buscarPersonaDato():
     return render_template("cliente.html", data=objp)
 
 
-#@app.route("/buscardatoc")# para entar a la pagina por main persona al metodo
-#def buscarDatot():
- #   nombre=str(request.args.get('nombret'))
-  #  objR=productoDao.productoDao().validartrabajador(nombre)
-   # return render_template("cliente.html", data=objR)
+@app.route("/buscardatoc")# para entar a la pagina por main persona al metodo
+def buscarDatot():
+    nombre=str(request.args.get('nombret'))
+    objR=productoDao.productoDao().validartrabajador(nombre)
+    return render_template("cliente.html", data=objR)
 
 
 
