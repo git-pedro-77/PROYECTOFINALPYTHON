@@ -51,8 +51,8 @@ def buscarproductoDato():
 @app.route("/buscardatop")# para entar a la pagina por main persona al metodo
 def buscarDatot():
     nombre=str(request.args.get('nombret'))
-    objR=productoDao.productoDao().validartrabajador(nombre)
-    return render_template("producto.html", databdprod=objR)
+    objp=productoDao.productoDao().validartrabajador(nombre)
+    return render_template("producto.html", databdprod=objp)
 
 
 

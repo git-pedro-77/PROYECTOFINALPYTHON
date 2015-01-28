@@ -49,7 +49,7 @@ class productoDao(DBcon.DBcon):#heredando
     
     def buscarproductoNombre(self, datobusca):
         con=self.conexion().connect().cursor()  #capturando de la clase DBcon
-        con.execute(""" select CONCAT (nombre) as value, id_producto as id from producto where upper(CONCAT (nombre)) like upper('%s') """ %("%"+datobusca+"%") )
+        con.execute(""" select CONCAT (nombre_producto) as value, id_producto as id from producto where upper(CONCAT (nombre_producto)) like upper('%s') """ %("%"+datobusca+"%") )
         reporte=con.fetchall()
         columna=('value', 'id')
         lista=[]
@@ -60,7 +60,7 @@ class productoDao(DBcon.DBcon):#heredando
     
     def buscarproductoDato(self, datobuscado):
         con=self.conexion().connect().cursor() 
-        sql=""" select * from producto where upper(CONCAT (nombre)) like upper('%s') """ %("%"+datobuscado+"%")
+        sql=""" select * from producto where upper(CONCAT (nombre_producto)) like upper('%s') """ %("%"+datobuscado+"%")
         #print sql
         con.execute(sql)
         reporte=con.fetchall() 
