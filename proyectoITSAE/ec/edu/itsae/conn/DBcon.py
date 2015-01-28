@@ -1,8 +1,8 @@
 # coding:utf-8
 '''
-Created on 19/1/2015
+Created on 27/1/2015
 
-@author: PC30
+@author: Programacion
 '''
 
 from flaskext.mysql import MySQL#importar mysql
