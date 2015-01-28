@@ -17,14 +17,14 @@ def mainProducto():
 
 @app.route("/addproducto", methods=['POST'])
 def addProducto():
-    codigo_producto=request.form.get('codproducto', type=str)
-    nombre_producto=request.form.get('nombre', type=str)
-    precio_producto=request.form.get('precio', type=str)
+    codigo=request.form.get('codproducto', type=str)
+    nombre=request.form.get('nombre', type=str)
+    precio=request.form.get('precio', type=str)
     proveedor=request.form.get('proveedor', type=str)
-    fecha_crea=request.form.get('fechaelab', type=str)
-    fecha_venc=request.form.get('fechaven', type=str)
+    fechacrea=request.form.get('fechaelab', type=str)
+    fechavenc=request.form.get('fechaven', type=str)
     
-    productoDao.ProductoDao().insertarproducto(codigo_producto, nombre_producto, precio_producto, proveedor, fecha_crea, fecha_venc)
+    productoDao.ProductoDao().insertarproducto(codigo, nombre, precio, proveedor, fechacrea, fechavenc)
     return redirect(url_for('mainproducto'))
 
 @app.route("/buscarautop")# para entar a la pagina por main persona al metodo
