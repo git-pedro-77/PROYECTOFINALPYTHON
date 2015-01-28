@@ -25,8 +25,8 @@ print report
 
 con=mysql.connect().cursor()
 con.execute(" select * from user ")
-reportt=con.fetchall()
-print reportt
+report=con.fetchall()
+print report
 
 #con=mysql.connect().cursor()#se hace la coneccion IMPORTANTE!!!
 #con.execute(" select * from producto ")#se hace la consulta
