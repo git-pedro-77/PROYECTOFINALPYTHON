@@ -24,7 +24,7 @@ def addUsuario():
     usuarioDao.UsuarioDao().insertarusuario(nombre, contrasena, rep_contrasena, estado)
     return redirect(url_for('mainusuario'))
 
-@app.route("/buscarautopu")# para entar a la pagina por main persona al metodo
+@app.route("/buscarautou")# para entar a la pagina por main persona al metodo
 def buscarUsuarioAuto():
     nombre=str(request.args.get('term'))
     obju=usuarioDao.UsuarioDao().buscarusuarioNombre(nombre)#llamar al reporte
