@@ -17,5 +17,5 @@ print obj.reportarCliente()
 obju=usuarioDao.UsuarioDao()
 print obju.reportarusuario()
 
-objp=productoDao.productoDao()
+objp=productoDao.ProductoDao
 print objp.reportarproducto()
