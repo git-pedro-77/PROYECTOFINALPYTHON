@@ -28,8 +28,8 @@ con.execute(" select * from user ")
 reportt=con.fetchall()
 print reportt
 
-con=mysql.connect().cursor()#se hace la coneccion IMPORTANTE!!!
-con.execute(" select * from producto ")#se hace la consulta
-reportt=con.fetchall() #funcion que hace que extrae todo desde la base de datos
-print reportt
+#con=mysql.connect().cursor()#se hace la coneccion IMPORTANTE!!!
+#con.execute(" select * from producto ")#se hace la consulta
+#reportt=con.fetchall() #funcion que hace que extrae todo desde la base de datos
+#print reportt
 
