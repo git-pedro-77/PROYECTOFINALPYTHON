@@ -13,6 +13,9 @@ from ec.edu.itsae.dao import ClienteDao
 obj=ClienteDao.ClienteDao()
 print obj.reportarCliente()
 
-
-objt=usuarioDao.TrabajadorDao()
+objt=usuarioDao.UsuarioDao()
 print objt.reportarTrabajador()
+
+
+#objt=usuarioDao.TrabajadorDao()
+#print objt.reportarTrabajador()
