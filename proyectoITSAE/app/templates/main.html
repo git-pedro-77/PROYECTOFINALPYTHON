@@ -8,7 +8,7 @@
 <script src="static/js/jquery-1.11.2.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 </head>
-<body background ="static/images/fondo3.jpg" >
+<body background ="static/images/fondo1.jpg" >
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
 
     <div class="navbar-header">
@@ -26,7 +26,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/main">Home</a></li>
         <li><a href="/maincliente">Cliente</a></li>
-        
+        <li><a href="#">Proveedor</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Producto <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -34,44 +34,41 @@
             <li><a href="#">Accion #2</a></li>
             <li><a href="#">Acción #3</a></li>
             <li class="divider"></li>
-            <li><a href="#">Acción #4</a></li>
+            	<li><a href="#">Acción #4</a></li>
             <li class="divider"></li>
             <li><a href="#">Acción #5</a></li>
           </ul>
-          
-          <li><a href="#">Proveedor</a></li>
-          
           <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ventas Producto <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Venta<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="/mainventa">Realizar ventas "Facturar" </a></li>
-            <li><a href="#">Accion #2</a></li>
+            <li><a href="/mainfactura">Factura</a></li>
+            <li><a href="#">Nota de Venta</a></li>
           </ul>
         </li>
-        
       </ul>
   
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar">
-        </div>
-        <button type="submit" class="btn btn-default">Enviar</button>
-      </form>
-  
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Clientes</a></li>  
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">General <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setting<b class="caret"></b>&emsp;&emsp;</a>
           <ul class="dropdown-menu">
             <li><a href="/mainusuario">Usuario</a></li>
             <li><a href="#">Acción #2</a></li>
             <li><a href="#">Acción #3</a></li>
             <li class="divider"></li>
-            <li><a href="#">Acción #4</a></li>
+            <li><a href="/">Salir &emsp;&emsp; </a></li>
+            <li class="divider"></li>
           </ul>
         </li>
-        <li><a href="/">Salir &emsp;&emsp; </a></li>
       </ul>
+      
+      
+      <form class="navbar-form navbar-right role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar">
+        </div>
+        <button type="submit" class="btn btn-default" aria-label="Left Align">Enviar&emsp;<span class="glyphicon glyphicon-search"></span></button>
+      </form>
+      
     </div>
   </nav>
   <div class="container" style="min-height: 42em;padding-top:4em; ">
