@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//app/ClienteMain.py=utf-8
+encoding//app/FacturaMain.py=utf-8
 encoding//app/__init__.py=utf-8
 encoding//app/mainIndex.py=utf-8
 encoding//app/productoMain.py=utf-8
@@ -8,6 +9,7 @@ encoding//app/ventamain.py=utf-8
 encoding//ec/edu/itsae/conn/DBcon.py=utf-8
 encoding//ec/edu/itsae/conn/conexion.py=utf-8
 encoding//ec/edu/itsae/dao/ClienteDao.py=utf-8
+encoding//ec/edu/itsae/dao/FacturaDao.py=utf-8
 encoding//ec/edu/itsae/dao/productoDao.py=utf-8
 encoding//ec/edu/itsae/dao/usuarioDao.py=utf-8
 encoding//ec/edu/itsae/dao/ventaDao.py=utf-8
