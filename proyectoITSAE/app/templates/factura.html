@@ -1,10 +1,275 @@
-<!DOCTYPE html>
-<html>
+{% extends 'main.html' %}
+{% block contenido %}
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producto</title>
+
+<!-- Llamando a los estilos y librerias -->
+<link href="static/css/jquery.dataTables.min.css" rel="stylesheet"><!-- Estilo de la tabla -->
+<script src="static/js/jquery.dataTables.min.js"></script> <!-- Para la paginacion -->
+<script src="static/js/bootstrapPager.min.js"></script><!-- para paginacion -->
+
+<!-- auto busqueda -->
+<link href="static/css/jquery-ui.min.css" rel="stylesheet">
+<script src="static/js/jquery-ui.min.js"></script> 
+
+<!--Para que salga el calendario-->
+<link href="static/css/datepicker.css" rel="stylesheet">
+<script src="static/js/bootstrap-datepicker.js"></script>
+
+
+<!--Para Validar los campos -->
+<link href="static/css/jquery.validity.css" rel="stylesheet">
+<script src="static/js/jquery.validity.js"></script>
+
+
+<script type="text/javascript">
+<!--el ja query se debe colcoar siempre $ y numerar para llamar al id -->
+$(function(){
+	$('#btncrear').click(function(){<!--  -->
+		$('#PanelInsertartProducto').show(); <!--  -->
+		$('#btncrear').hide(); <!-- para ocultar el boton-->
+	}); 
+	
+	$('#btncancelar').click(function(){<!--  -->
+		$('#PanelInsertartProducto').hide();<!--  -->
+		$('#btncrear').show(); <!-- para ocultar el boton-->
+	});
+	
+	
+	$('#fechareq').datepicker({
+		      format:"yyyy-mm-dd"
+	});
+	
+	$('#fechaven').datepicker({
+	      format:"yyyy-mm-dd"
+    });
+	
+	$('#formT').validity(function(){
+		$('#codproducto')
+		 .require();
+		
+		$('#nombre')
+		 .require();
+		
+		$('#precio')
+		 .require();
+		
+		$('#proveedor')
+		.require()
+		
+		});
+	
+	$('#PanelInsertartProducto').validity("input:text, textarea:textarea, select");
+	
+});
+
+
+<!-- Boton aumento de Fila -->
+
+$(document).ready(function() {
+
+    var MaxInputs        = 19; //Número Maximo de Campos
+    var contenedor       = $("#contenedor"); //ID del contenedor
+    var AddButton        = $("#btnAgregar"); //ID del Botón Agregar
+
+    //var x = número de campos existentes en el contenedor
+    var x = 1//$("#contenedor div").length + 1;
+    var FieldCount = x-1; //para el seguimiento de los campos
+
+    $(AddButton).click(function (e) {
+        if(x <= MaxInputs) //max input box allowed
+        {
+            FieldCount++;
+            //agregar campo
+            //$(contenedor).append('<div><input type="text" name="mitexto[]" id="campo_'+ FieldCount +'" placeholder="Texto '+ FieldCount +'"/>');
+            $(contenedor).append('<div class="form-group"><div class="col-sm-2 col-xs-1"><input type="text" id="cantida'+ FieldCount +'" name="cantidad'+ FieldCount +'" class="form-control input-sm" required=""></div><div class="col-sm-5 col-xs-5"><input type="text" id="detalle'+ FieldCount +'" name="detalle'+ FieldCount +'" class="form-control input-sm" required=""></div><div class="col-sm-2 col-xs-2"><input type="text" id="unitario'+ FieldCount +'" name="unitario'+ FieldCount +'" class="form-control input-sm" required=""></div><div class="col-sm-2 col-xs-3"><input type="text" id="vtotal'+ FieldCount +'" name="vtotal'+ FieldCount +'" class="form-control input-sm" required=""></div><span class="glyphicon glyphicon-remove eliminar"></span></div>');
+            
+            
+            
+            x++; //text box increment
+        }
+        return false;
+    });
+
+    $("body").on("click",".eliminar", function(e){ //click en eliminar campo
+        if( x > 1 ) {
+            $(this).parent('div').remove(); //eliminar el campo
+            FieldCount--
+            x--;
+        }
+        return false;
+    });
+});
+
+<!-- Fin de boton aumento de Fila -->
+
+</script>
 </head>
 <body>
 
+
+	<div id="PanelInsertartProducto" style="display: show;"> <!-- no va a mostrar el panel esta oculto -->
+		<div class="panel panel-primary"><!-- todo class es tomado desde el bootstrap -->
+			<div class="panel-heading">
+				<h3 class="panel-title">Venta Factura</h3> <!--Nombre del registro -->
+
+			</div>
+			<div class="panel-body">
+				<div id="formAdd" aling="center">
+					<form action="/addproducto" method="post" id="formT" name="formT" class="form-horizontal" role="form"> <!--estilos-->
+					
+						<div class="form-group">
+							<label for="nombres" class="col-sm-2 control-label">Nombres</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-4"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="nombres" name="nombres" class="form-control" required="" placeholder="Ingrese los dos nombres del cliente">
+							</div>
+													
+							<label for="apellidos" class="col-sm-2 control-label">Apellidos</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-4"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="apellidos" name="apellidos" class="form-control" required="" placeholder="Ingrese los dos apellidos del cliente">
+							</div>
+						</div>	
+							
+						<div class="form-group">	
+							<label for="idrucci" class="col-sm-2 control-label">R.U.C. / C.I.</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-3"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="codproducto" name="codproducto" class="form-control" required="" placeholder="Campo de texto codproducto">
+							</div>
+							
+							 <label for="direccion" class="col-sm-2 control-label">Dirección</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-5"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="codproducto" name="codproducto" class="form-control" required="" placeholder="Campo de texto codproducto">
+							</div>
+						</div>
+						
+						<div class="form-group">	
+							<label for="idrucci" class="col-sm-2 control-label">Telefono</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-3"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="codproducto" name="codproducto" class="form-control" required="" placeholder="Campo de texto codproducto">
+							</div>
+							
+							<label for="email" class="col-sm-2 control-label">Em@il</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-5"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="email" name="email" class="form-control" required="" placeholder="Ingrese el correo o imaeil">
+							</div>
+						</div>
+						
+						<div class="form-group">	
+							<label for="fechareq" class="col-sm-2 control-label">Fecha Emisión</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-3"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="fechareq" name="fechareq" class="form-control" required="" placeholder="Ingrese la fecha de Emisión">
+							</div>
+							
+							<label for="idrucci" class="col-sm-2 control-label">Guia Remisión N°</label> <!-- class propio del bootstrap -->
+							<div class="col-sm-3"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+								<input type="text" id="codproducto" name="codproducto" class="form-control" required="" placeholder="Campo de texto codproducto">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="nombre" class="col-sm-2 control-label">Cant.</label> <!-- class propio del bootstrap -->
+							<label for="nombre" class="col-sm-5 control-label">Descripción</label> <!-- class propio del bootstrap -->
+							<label for="nombre" class="col-sm-2 control-label">P. Unitario</label> <!-- class propio del bootstrap -->
+							<label for="nombre" class="col-sm-2 control-label">V. Total</label> <!-- class propio del bootstrap -->
+						</div>
+						
+						<!-- Inicio de incremento de filas -->
+						<div id="contenedor">	
+							<div class="form-group">
+								<div class="col-sm-2 col-xs-1"> 
+									<input type="text" id="cantidad0" name="cantidad0" class="form-control input-sm" required="">
+								</div>
+								<div class="col-sm-5 col-xs-5"> 
+									<input type="text" id="detalle0" name="detalle0" class="form-control input-sm" required="">
+								</div>
+								<div class="col-sm-2 col-xs-2"> 
+									<input type="text" id="unitario0" name="unitario0" class="form-control input-sm" required="">
+								</div>
+								<div class="col-sm-2 col-xs-3"> 
+									<input type="text" id="vtotal0" name="vtotal0" class="form-control input-sm" required="">
+								</div> 
+							</div>
+							
+						</div>
+						<!-- Fin de incremento de filas -->
+						
+						
+						<div class="form-group">
+							<div class="col-sm-10">
+								<h4 align="center">
+									<input type="button" name="btnAgregar" id="btnAgregar" class="btn btn-warning" value="Agregar">
+								</h4>
+							</div> 
+						</div>
+						
+						<div class="form-group">
+							<div class="form-group">
+								<label for="idrucci" class="col-sm-7 control-label">Sub Total</label> <!-- class propio del bootstrap -->
+								<div class="col-sm-4"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+									<div class="input-group">
+										<span class="input-group-addon">$</span>
+										<input type="text" id="codproducto" name="codproducto" class="form-control">
+									</div>
+								</div>
+								
+								<label for="idrucci" class="col-sm-7 control-label">I.V.A.  12%</label> <!-- class propio del bootstrap -->
+								<div class="col-sm-4"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+									<div class="input-group">
+										<input type="text" id="codproducto" name="codproducto" class="form-control">
+										<span class="input-group-addon">%</span>
+									</div>	
+								</div>
+								
+								<label for="idrucci" class="col-sm-7 control-label">VALOR TOTAL</label> <!-- class propio del bootstrap -->
+								<div class="col-sm-4"> <!--los classs es para que pueda reenderizarse a la pantalla que vayamos a usar -->
+									<div class="input-group">
+										<span class="input-group-addon">$</span>
+										<input type="text" id="codproducto" name="codproducto" class="form-control">
+									</div>
+								</div>
+							</div>
+						</div>
+						
+			
+						<div class="form-group">
+							<div class="col-sm-10">
+								<h4 align="center">
+									<input type="submit"  name="btnEnviar"  class="btn btn-success" value="Registrar"> 
+									<input type="reset" name="btnLimpiar" class="btn btn-info" value="Limpiar">
+									<input type="button" name="btnCancelar" id="btncancelar" class="btn btn-warning" value="Cancelar">
+								</h4>
+							</div> 
+						</div>
+					
+					</form>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+
+<script type="text/javascript">
+
+<!-- Inicio de boton busqueda -->
+$('#nombres').autocomplete({ <!--es para llamar a id de la tabla-->
+source:"/buscarfacturacliente", <!--Para enviar la url y llamar al url-->
+minLength:2
+});
+$('#apellidos').autocomplete({ source:"/buscarfacturacliente",minLength:2});
+<!-- Fin de boton busqueda -->
+
+</script>
+
+<h4 align="center">
+	<img src="static/Logo/cade.jpg" alt="Propiedad de PEDRO, FRACO, JONATHAN" width="100" height="100" />
+</h4>
+
 </body>
-</html>
+
+
+
+
+{% endblock %}
