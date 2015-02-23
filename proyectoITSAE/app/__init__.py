@@ -6,3 +6,4 @@ from app import productoMain
 from app import ClienteMain
 from app import usuariomain
 from app import ventamain
+from app import FacturaMain
